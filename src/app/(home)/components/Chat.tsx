@@ -1,26 +1,63 @@
 "use client"
 
 import { useState } from "react"
+import { useChat } from "@ai-sdk/react"
+import { DefaultChatTransport } from "ai"
 import { ChatMessage } from "./ChatMessage"
+import { ChatInput } from "./ChatInput"
 
-type ChatMessage = {
-  role: "user" | "assistant"
-  content: string
+interface ChatProps {
+  onFirstMessage?: () => void
+  showInput?: boolean
 }
 
-export function Chat() {
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: "user", content: "What's the weather like today?" },
-    { role: "assistant", content: "I'm an AI assistant and don't have access to real-time weather data. You can check your local weather service or weather app for current conditions." },
-    { role: "user", content: "Can you help me with my schedule?" },
-    { role: "assistant", content: "Of course! I'd be happy to help you with your schedule. What would you like to do? Add an event, view your calendar, or something else?" },
-  ])
+export function Chat({ onFirstMessage, showInput = true }: ChatProps) {
+  const [input, setInput] = useState("")
+  const { messages, sendMessage, status } = useChat({
+    transport: new DefaultChatTransport({
+      api: '/api/chat',
+    }),
+  })
+
+  const handleSubmit = () => {
+    if (input.trim()) {
+      if (messages.length === 0 && onFirstMessage) {
+        onFirstMessage()
+      }
+      sendMessage({ text: input })
+      setInput("")
+    }
+  }
+
+  if (showInput) {
+    return (
+      <div className="w-full max-w-3xl">
+        <ChatInput
+          value={input}
+          onChange={setInput}
+          onSubmit={handleSubmit}
+          disabled={status !== "ready"}
+        />
+      </div>
+    )
+  }
 
   return (
-    <div className="flex flex-col gap-4 w-full max-w-3xl">
-      {messages.map((message, index) => (
-        <ChatMessage key={index} message={message} />
-      ))}
+    <div className="flex flex-col h-screen w-full max-w-3xl">
+      <div className="flex-1 overflow-y-auto flex flex-col gap-4 pb-4">
+        {messages.map((message) => (
+          <ChatMessage key={message.id} message={message} />
+        ))}
+      </div>
+
+      <div className="sticky bottom-0 bg-background pt-4 pb-6">
+        <ChatInput
+          value={input}
+          onChange={setInput}
+          onSubmit={handleSubmit}
+          disabled={status !== "ready"}
+        />
+      </div>
     </div>
   )
 }
