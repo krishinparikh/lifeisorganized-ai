@@ -1,6 +1,6 @@
 # AI Chatbot Persona: Life is Organized
 
-AI chatbot that delivers on-demand advice in the authentic voice and expertise of Mridu Parikh — a productivity consultant and owner of [Life is Organized](https://lifeisorganized.com/){:target="_blank"}.
+AI chatbot that delivers on-demand advice in the authentic voice and expertise of Mridu Parikh — a productivity consultant and owner of <a href="https://lifeisorganized.com/" target="_blank">Life is Organized</a>.
 
 ## Getting Started
 
