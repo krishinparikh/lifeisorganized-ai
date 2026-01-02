@@ -23,11 +23,11 @@ export function ChatInput({ value, onChange, onSubmit, disabled }: ChatInputProp
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
-      <InputGroup className="rounded-full h-14 shadow bg-white has-[[data-slot=input-group-control]:focus-visible]:!border-foreground/30 has-[[data-slot=input-group-control]:focus-visible]:!ring-0">
+      <InputGroup className="rounded-full h-14 shadow-xl bg-white has-[[data-slot=input-group-control]:focus-visible]:!border-foreground/30 has-[[data-slot=input-group-control]:focus-visible]:!ring-0">
         <InputGroupInput
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder="Ask Mridu a question..."
+          placeholder="Ask Mridu's avatar a question..."
           className="px-6 text-base!"
           disabled={disabled}
         />

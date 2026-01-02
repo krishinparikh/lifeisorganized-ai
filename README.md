@@ -1,6 +1,6 @@
 # AI Chatbot Persona: Life is Organized
 
-An intelligent AI chatbot web application that emulates the authentic voice and expertise of Mridu Parikh — a productivity consultant and owner of [Life is Organized](https://lifeisorganized.com/).
+AI chatbot that delivers on-demand advice in the authentic voice and expertise of Mridu Parikh — a productivity consultant and owner of [Life is Organized](https://lifeisorganized.com/){:target="_blank"}.
 
 ## Getting Started
 
@@ -31,7 +31,12 @@ PINECONE_API_KEY=your_pinecone_api_key
 PINECONE_INDEX=your_pinecone_index_name
 ```
 
-4. Run the development server:
+4. Run the ingest-docs script
+```bash
+npm run ingest
+```
+
+5. Run the development server:
 ```bash
 npm run dev
 ```
