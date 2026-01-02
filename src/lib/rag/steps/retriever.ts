@@ -7,7 +7,7 @@ import { getVectorStore } from "./vector-store";
  */
 export async function retrieveDocuments(
   query: string,
-  k: number = 4,
+  k: number = 5,
   namespace?: string
 ): Promise<Document[]> {
   const embeddings = new OpenAIEmbeddings({

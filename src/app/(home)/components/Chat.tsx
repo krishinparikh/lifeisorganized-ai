@@ -43,14 +43,14 @@ export function Chat({ onFirstMessage, showInput = true }: ChatProps) {
   }
 
   return (
-    <div className="flex flex-col h-screen w-full max-w-3xl">
+    <div className="flex flex-col h-screen w-full max-w-3xl pb-24">
       <div className="flex-1 overflow-y-auto flex flex-col gap-4 pb-4">
         {messages.map((message) => (
           <ChatMessage key={message.id} message={message} />
         ))}
       </div>
 
-      <div className="sticky bottom-0 bg-background pt-4 pb-6">
+      <div className="sticky bottom-0 bg-background">
         <ChatInput
           value={input}
           onChange={setInput}

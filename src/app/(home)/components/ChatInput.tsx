@@ -23,7 +23,7 @@ export function ChatInput({ value, onChange, onSubmit, disabled }: ChatInputProp
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
-      <InputGroup className="rounded-full h-14 shadow">
+      <InputGroup className="rounded-full h-14 shadow bg-white has-[[data-slot=input-group-control]:focus-visible]:!border-foreground/30 has-[[data-slot=input-group-control]:focus-visible]:!ring-0">
         <InputGroupInput
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -35,7 +35,7 @@ export function ChatInput({ value, onChange, onSubmit, disabled }: ChatInputProp
           <InputGroupButton
             type="submit"
             size="icon-sm"
-            className="rounded-full h-9 w-9 bg-primary text-primary-foreground hover:bg-primary/90"
+            className="rounded-full h-9 w-9 bg-primary text-primary-foreground hover:bg-primary/70 hover:text-primary-foreground hover:cursor-pointer"
             disabled={disabled}
           >
             <ArrowUp className="size-5" />

@@ -39,7 +39,7 @@ async function convertToLangChainMessages(uiMessages: UIMessage[]): Promise<Base
 
 export async function streamChat(messages: UIMessage[]) {
   const model = new ChatOpenAI({
-    model: "gpt-4o",
+    model: "gpt-4o-mini",
     temperature: 0.7
   });
 

@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Life is Organized - AI Chat",
   description: "Chat with Mridu",
+  icons: {
+    icon: "/LogoIcon.png",
+  },
 };
 
 export default function RootLayout({
