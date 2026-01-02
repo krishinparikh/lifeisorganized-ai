@@ -5,6 +5,7 @@ import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
 import { ChatMessage } from "./ChatMessage"
 import { ChatInput } from "./ChatInput"
+import { Conversation, ConversationContent, ConversationScrollButton } from "@/src/components/ai-elements/conversation"
 
 interface ChatProps {
   onFirstMessage?: () => void
@@ -44,11 +45,14 @@ export function Chat({ onFirstMessage, showInput = true }: ChatProps) {
 
   return (
     <div className="flex flex-col h-screen w-full max-w-3xl pb-24">
-      <div className="flex-1 overflow-y-auto flex flex-col gap-4 pb-4">
-        {messages.map((message) => (
-          <ChatMessage key={message.id} message={message} />
-        ))}
-      </div>
+      <Conversation className="flex-1">
+        <ConversationContent>
+          {messages.map((message) => (
+            <ChatMessage key={message.id} message={message} />
+          ))}
+        </ConversationContent>
+        <ConversationScrollButton />
+      </Conversation>
 
       <div className="sticky bottom-0 bg-background">
         <ChatInput
