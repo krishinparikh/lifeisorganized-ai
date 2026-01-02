@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Chatbot Persona: Life is Organized
+
+An intelligent AI chatbot web application that emulates the authentic voice and expertise of Mridu Parikh — a productivity consultant and owner of [Life is Organized](https://lifeisorganized.com/).
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 20+
+- OpenAI API key
+- Pinecone API key and index
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/krishinparikh/lifeisorganized-ai
+cd lifeisorganized-ai
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables:
+Create a `.env` file in the root directory with:
+```
+OPENAI_API_KEY=your_openai_api_key
+PINECONE_API_KEY=your_pinecone_api_key
+PINECONE_INDEX=your_pinecone_index_name
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Run the development server:
+```bash
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+lifeisorganized-ai/
+├── src/
+│   ├── app/
+│   │   ├── (home)/
+│   │   │   ├── components/
+│   │   │   │   ├── Chat.tsx          # Main chat component
+│   │   │   │   ├── ChatMessage.tsx   # Individual message display
+│   │   │   │   └── ChatInput.tsx     # User input component
+│   │   │   └── page.tsx              # Home page with chat interface
+│   │   ├── api/
+│   │   │   └── chat/
+│   │   │       └── route.ts          # API endpoint for chat streaming
+│   │   └── layout.tsx                # Root layout
+│   ├── components/
+│   │   └── ui/                       # Reusable UI components
+│   ├── lib/
+│   │   ├── chat.ts                   # Chat logic and RAG integration
+│   │   ├── prompts.ts                # System and user prompts
+│   │   ├── types.ts                  # TypeScript type definitions
+│   │   ├── utils.ts                  # Utility functions
+│   │   └── rag/
+│   │       ├── ingest.ts             # Document ingestion pipeline
+│   │       └── steps/
+│   │           ├── loader.ts         # Document loading
+│   │           ├── chunker.ts        # Text chunking
+│   │           ├── embedder.ts       # Text embedding
+│   │           ├── vector-store.ts   # Pinecone storage
+│   │           └── retriever.ts      # Document retrieval
+│   └── scripts/
+│       └── ingest-docs.ts            # CLI script for ingesting documents
+└── podcast_scripts/                   # Default folder for documents to ingest
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## How it Works
 
-## Deploy on Vercel
+### RAG Pipeline
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The application uses a Retrieval-Augmented Generation (RAG) pipeline to provide contextual, informed responses:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Document Ingestion** ([src/lib/rag/ingest.ts](src/lib/rag/ingest.ts))
+   - Loads documents from the `podcast_scripts` folder (supports .txt, .docx)
+   - Splits documents into chunks (1000 characters, 200 overlap)
+   - Generates embeddings using OpenAI's `text-embedding-3-small`
+   - Stores chunks and embeddings in Pinecone vector database
+
+2. **Query Processing** ([src/lib/chat.ts](src/lib/chat.ts))
+   - User sends a message through the chat interface
+   - System retrieves relevant document chunks from Pinecone based on semantic similarity
+   - Augments the user's query with retrieved context
+   - Sends enhanced prompt to GPT-4o-mini
+
+3. **Response Generation**
+   - LangChain streams responses from OpenAI
+   - UI displays responses in real-time using the Vercel AI SDK
+   - Conversation history is maintained for context
+
+### Tech Stack
+
+- **Web Application**: Next.js 16, TypeScript, React 19, Tailwind CSS, shadcn/ui
+- **AI/LLM**: LangChain, Pinecone (vector store), OpenAI (LLM and embedding), Vercel AI SDK (streaming)

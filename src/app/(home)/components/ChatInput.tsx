@@ -35,7 +35,7 @@ export function ChatInput({ value, onChange, onSubmit, disabled }: ChatInputProp
           <InputGroupButton
             type="submit"
             size="icon-sm"
-            className="rounded-full h-9 w-9 bg-[#be82b9] text-primary-foreground hover:bg-[#be82b9]/70 hover:text-primary-foreground hover:cursor-pointer"
+            className="rounded-full h-9 w-9 bg-[#8c5287] text-primary-foreground hover:bg-[#be82b9] hover:text-primary-foreground hover:cursor-pointer"
             disabled={disabled}
           >
             <ArrowUp className="size-5" />
