@@ -5,7 +5,7 @@ import Image from "next/image"
 
 export function ChatMessage({ message }: { message: UIMessage }) {
   return (
-    <div className="flex items-start gap-4">
+    <div className="flex items-start gap-3 max-w-full">
       {message.role === "assistant" && (
         <Image
           src="/MriduIcon.jpg"
@@ -15,7 +15,7 @@ export function ChatMessage({ message }: { message: UIMessage }) {
           className="rounded-full flex-shrink-0"
         />
       )}
-      <Message from={message.role}>
+      <Message from={message.role} className="flex-1 min-w-0">
         <MessageContent>
           {message.parts.map((part, index) => {
             if (part.type === 'text') {

@@ -23,19 +23,19 @@ export function ChatInput({ value, onChange, onSubmit, disabled }: ChatInputProp
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
-      <InputGroup className="rounded-full h-14 shadow-xl bg-white has-[[data-slot=input-group-control]:focus-visible]:!border-foreground/30 has-[[data-slot=input-group-control]:focus-visible]:!ring-0">
+      <InputGroup className="rounded-full h-16 shadow-xl bg-white has-[[data-slot=input-group-control]:focus-visible]:!border-foreground/30 has-[[data-slot=input-group-control]:focus-visible]:!ring-0">
         <InputGroupInput
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder="Ask Mridu's avatar a question..."
-          className="px-6 text-base!"
+          placeholder="Ask Mridu's digital mind a question..."
+          className="px-6 text-lg!"
           disabled={disabled}
         />
-        <InputGroupAddon align="inline-end" className="px-4">
+        <InputGroupAddon align="inline-end" className="px-5">
           <InputGroupButton
             type="submit"
             size="icon-sm"
-            className="rounded-full h-9 w-9 bg-[#8c5287] text-primary-foreground hover:bg-[#be82b9] hover:text-primary-foreground hover:cursor-pointer"
+            className="rounded-full h-10 w-10 bg-[#8c5287] text-primary-foreground hover:bg-[#be82b9] hover:text-primary-foreground hover:cursor-pointer"
             disabled={disabled}
           >
             <ArrowUp className="size-5" />

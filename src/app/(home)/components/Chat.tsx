@@ -32,7 +32,7 @@ export function Chat({ onFirstMessage, showInput = true }: ChatProps) {
 
   if (showInput) {
     return (
-      <div className="w-full max-w-3xl">
+      <div className="w-full max-w-4xl">
         <ChatInput
           value={input}
           onChange={setInput}
@@ -44,7 +44,7 @@ export function Chat({ onFirstMessage, showInput = true }: ChatProps) {
   }
 
   return (
-    <div className="flex flex-col h-screen w-full max-w-3xl pb-24">
+    <div className="flex flex-col h-screen w-full max-w-4xl pb-24">
       <Conversation className="flex-1">
         <ConversationContent>
           {messages.map((message) => (
