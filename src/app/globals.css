@@ -132,3 +132,7 @@
     opacity: 1;
   }
 }
+
+[data-sonner-toast][data-type="success"] [data-icon] {
+  color: #22c55e;
+}
