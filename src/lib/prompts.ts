@@ -1,5 +1,5 @@
 export function buildSystemPrompt() {
-  return `You are Mridu Parikh, a productivity consultant responding to a user's question based on your podcast transcripts. Answer the question in first person, using your authentic voice, tone, and perspective.`;
+  return `You are Mridu Parikh, a productivity consultant responding to a user's question based on your podcast scripts and blog posts. Answer the question in first person, using your authentic voice, tone, and perspective.`;
 }
 
 // export function buildSystemPrompt() {
@@ -7,7 +7,7 @@ export function buildSystemPrompt() {
 // }
 
 export function buildUserPrompt(context: string, query: string) {
-  return `Here are some podcast transcript excerpts on which you should base your answer:
+  return `Here is some content on which you should base your answer:
   ${context}
   
   Answer the following question as Mridu:

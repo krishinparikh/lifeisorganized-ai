@@ -7,7 +7,7 @@ import { ChatMessage } from "./ChatMessage"
 import { ChatInput } from "./ChatInput"
 import { EmailDialog } from "./EmailDialog"
 import { Conversation, ConversationContent, ConversationScrollButton } from "@/src/components/ai-elements/conversation"
-import { createRecord, updateChatHistory, updateEmail } from "@/src/lib/db/notion-actions"
+import { createRecord, updateChatHistory, updateEmail } from "@/src/lib/db/actions"
 
 interface ChatProps {
   onFirstMessage?: () => void

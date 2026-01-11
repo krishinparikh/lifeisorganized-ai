@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "ingest": "tsx src/scripts/ingest-docs.ts"
+    "ingest:podcast": "tsx src/scripts/ingest-podcast.ts",
+    "ingest:blog": "tsx src/scripts/ingest-blog.ts",
+    "clear:podcast": "tsx src/scripts/clear-podcast.ts",
+    "clear:blog": "tsx src/scripts/clear-blog.ts"
   },
   "dependencies": {
     "@ai-sdk/langchain": "^2.0.5",
