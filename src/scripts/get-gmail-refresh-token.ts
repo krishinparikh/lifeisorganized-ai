@@ -1,0 +1,14 @@
+console.log('\n=== Gmail Refresh Token - Easy Setup ===\n');
+console.log('Use Google OAuth Playground to get your refresh token:\n');
+console.log('1. Go to: https://developers.google.com/oauthplayground/\n');
+console.log('2. Click the gear icon (⚙️) in the top right\n');
+console.log('3. Check "Use your own OAuth credentials"\n');
+console.log('4. Enter:');
+console.log(`   OAuth Client ID: ${process.env.GOOGLE_CLIENT_ID}`);
+console.log(`   OAuth Client secret: ${process.env.GOOGLE_CLIENT_SECRET}\n`);
+console.log('5. In the left panel, scroll down and select:');
+console.log('   Gmail API v1 → https://www.googleapis.com/auth/gmail.send\n');
+console.log('6. Click "Authorize APIs" and sign in\n');
+console.log('7. Click "Exchange authorization code for tokens"\n');
+console.log('8. Copy the "Refresh token" and add it to your .env file:\n');
+console.log('   GOOGLE_REFRESH_TOKEN=<your_refresh_token>\n');

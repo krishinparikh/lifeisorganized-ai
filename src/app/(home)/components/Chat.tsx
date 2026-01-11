@@ -8,6 +8,7 @@ import { ChatInput } from "./ChatInput"
 import { EmailDialog } from "./EmailDialog"
 import { Conversation, ConversationContent, ConversationScrollButton } from "@/src/components/ai-elements/conversation"
 import { createRecord, updateChatHistory, updateEmail } from "@/src/lib/db/actions"
+import { sendNotificationEmail } from "@/src/lib/gmail/actions"
 
 interface ChatProps {
   onFirstMessage?: () => void
@@ -35,6 +36,10 @@ export function Chat({ onFirstMessage, showInput = true }: ChatProps) {
         // Create initial record with first conversation
         const id = await createRecord(new Date(), chatHistory)
         pageIdRef.current = id
+
+        // Send email notification with Notion page link
+        const notionPageUrl = `https://www.notion.so/${id.replace(/-/g, '')}`
+        await sendNotificationEmail(notionPageUrl)
 
         // If email was submitted before pageId was ready, update it now
         if (pendingEmailRef.current) {

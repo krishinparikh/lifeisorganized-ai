@@ -10,7 +10,9 @@
     "ingest:podcast": "tsx src/scripts/ingest-podcast.ts",
     "ingest:blog": "tsx src/scripts/ingest-blog.ts",
     "clear:podcast": "tsx src/scripts/clear-podcast.ts",
-    "clear:blog": "tsx src/scripts/clear-blog.ts"
+    "clear:blog": "tsx src/scripts/clear-blog.ts",
+    "gmail:setup": "tsx src/scripts/get-gmail-refresh-token.ts",
+    "gmail:test": "tsx src/scripts/test-gmail.ts"
   },
   "dependencies": {
     "@ai-sdk/langchain": "^2.0.5",
@@ -31,6 +33,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^16.6.1",
+    "googleapis": "^170.0.0",
     "langchain": "^1.2.3",
     "lucide-react": "^0.562.0",
     "mammoth": "^1.11.0",
